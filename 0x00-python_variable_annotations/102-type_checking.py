@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """tuple to list"""
 from typing import Tuple, List
 
