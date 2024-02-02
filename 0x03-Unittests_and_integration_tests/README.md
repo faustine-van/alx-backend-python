@@ -3,6 +3,6 @@
 
 
 ### Required Files
-[utils.py](https://github.com/MosesSoftEng/alx-backend-python/blob/master/0x03-Unittests_and_integration_tests/utils.py)
-[client.py](https://github.com/MosesSoftEng/alx-backend-python/blob/master/0x03-Unittests_and_integration_tests/client.py)
-[fixtures.py](https://github.com/MosesSoftEng/alx-backend-python/blob/master/0x03-Unittests_and_integration_tests/fixtures.py)
+- [utils.py](https://github.com/faustine-van/alx-backend-python/blob/master/0x03-Unittests_and_integration_tests/files/utils.py)
+- [client.py](https://github.com/faustine-van/alx-backend-python/blob/master/0x03-Unittests_and_integration_tests/files/client.py)
+- [fixtures.py](https://github.com/faustine-van/alx-backend-python/blob/master/0x03-Unittests_and_integration_tests/files/fixtures.py)
