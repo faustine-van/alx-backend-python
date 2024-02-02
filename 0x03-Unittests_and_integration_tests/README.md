@@ -14,3 +14,4 @@
 [unittest.mock — mock object library](https://docs.python.org/3/library/unittest.mock.html)
 [How to mock a readonly property with mock?](https://stackoverflow.com/questions/11836436/how-to-mock-a-readonly-property-with-mock)
 [Memoization](https://en.wikipedia.org/wiki/Memoization)
+[Python Tutorial: Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI&t=155s)
