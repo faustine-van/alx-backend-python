@@ -44,12 +44,12 @@ class TestGetJson(unittest.TestCase):
             mocked_get.return_value.json.return_value = test_payload
             res = get_json(test_url_1)
 
-            mocked_get.assert_called_with(test_url_1)
+            mocked_get.assert_called_once_with(test_url_1)
             self.assertEqual(res, test_payload)
 
             test_payload = {"payload": False}
             mocked_get.return_value.json.return_value = test_payload
             res1 = get_json(test_url_2)
 
-            mocked_get.assert_called_with(test_url_2)
+            mocked_get.assert_called_once_with(test_url_2)
             self.assertEqual(res1, test_payload)
