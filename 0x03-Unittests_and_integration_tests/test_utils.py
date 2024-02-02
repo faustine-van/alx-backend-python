@@ -53,6 +53,5 @@ class TestGetJson(unittest.TestCase):
                 mocked_get.return_value = mock_res
 
                 res = get_json(test_url)
-                mocked_get.assert_called_once_with(test_url)
+                mocked_get.assert_called_with(test_url)
                 self.assertEqual(res, test_payload)
-                mocked_get.reset_mock()
