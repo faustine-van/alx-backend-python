@@ -16,3 +16,4 @@
 [Memoization](https://en.wikipedia.org/wiki/Memoization)
 [Python Tutorial: Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI&t=155s)
 [parameterized](https://pypi.org/project/parameterized/)
+[Mocking External APIs in Python](https://realpython.com/testing-third-party-apis-with-mocks/)
