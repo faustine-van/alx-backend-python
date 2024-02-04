@@ -59,17 +59,17 @@ class TestMemoize(unittest.TestCase):
 
         class TestClass:
             """TestClass memoize"""
-            def a_method(self) -> int:
+            def a_method(self):
                 """a_method memoize"""
                 return 42
 
             @memoize
-            def a_property(self) -> int:
+            def a_property(self):
                 """a_property memoize"""
                 return self.a_method()
 
-        with patch.object(TestClass, 'a_method', return_value=42) as mok:
-
+        with patch.object(TestClass, 'a_method') as mok:
+            mok.return_value = 42
             instance = TestClass()
             # The first call to a_property
             res1 = instance.a_property
@@ -79,4 +79,3 @@ class TestMemoize(unittest.TestCase):
             # The second call to a_property
             res2 = instance.a_property
             self.assertEqual(res2, 42)
-
