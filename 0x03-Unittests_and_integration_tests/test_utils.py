@@ -54,7 +54,10 @@ class TestGetJson(unittest.TestCase):
 
 class TestMemoize(unittest.TestCase):
     """test memoize"""
-    def test_memoize(self):
+    @parameterized.expand([
+        (42),
+    ])
+    def test_memoize(self, expected):
         """method"""
 
         class TestClass:
@@ -68,13 +71,14 @@ class TestMemoize(unittest.TestCase):
                 """a_property"""
                 return self.a_method()
 
-        with patch.object(TestClass, 'a_method', return_value=42) as mok:
+        with patch.object(TestClass, 'a_method', return_value=expected) as mok:
 
             instance = TestClass()
+            # The first call to a_property
             res = instance.a_property
-            self.assertEqual(res, 42)
-
+            self.assertEqual(res, expected)
+            # The second call to a_property
             res = instance.a_property
-            self.assertEqual(res, 42)
+            self.assertEqual(res, expected)
 
             mok.assert_called_once()
