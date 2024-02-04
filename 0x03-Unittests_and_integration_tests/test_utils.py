@@ -54,7 +54,7 @@ class TestGetJson(unittest.TestCase):
 
 class TestMemoize(unittest.TestCase):
     """test memoize class"""
-    def test_memoize(self) -> None:
+    def test_memoize(self):
         """method test_memoiz3"""
 
         class TestClass:
@@ -68,7 +68,8 @@ class TestMemoize(unittest.TestCase):
                 """a_property memoize"""
                 return self.a_method()
 
-        with patch.object(TestClass, 'a_method', return_value=42) as mok:
+        with patch.object(TestClass, 'a_method',
+                          return_value=lambda: 42) as mok:
 
             instance = TestClass()
             # The first call to a_property
