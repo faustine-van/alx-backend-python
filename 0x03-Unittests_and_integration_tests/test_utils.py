@@ -75,4 +75,4 @@ class TestMemoize(unittest.TestCase):
             res = instance.a_property
             self.assertEqual(res, 42)
 
-             mok.assert_called_once()
+            mok.assert_called_once()
