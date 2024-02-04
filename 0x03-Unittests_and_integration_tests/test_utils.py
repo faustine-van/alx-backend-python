@@ -79,11 +79,15 @@ class TestMemoize(unittest.TestCase):
                 return self.a_method()
         # Mock the a_method using patch and Set return value
         with patch.object(TestClass, 'a_method') as mok:
-
+            mok.return_value = 42
             instance = TestClass()
             # The first call to a_property
-            instance.a_property()
+            res1 = instance.a_property
             # The second call to a_property
-            instance.a_property()
+            res2 = instance.a_property
             # call once
             mok.assert_called_once()
+
+            # check if the correct result is returned
+            self.assertEqual(res1, 42)
+            self.assertEqual(res2, 42)
