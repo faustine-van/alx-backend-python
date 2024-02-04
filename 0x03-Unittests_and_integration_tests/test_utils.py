@@ -54,23 +54,17 @@ class TestGetJson(unittest.TestCase):
 
 class TestMemoize(unittest.TestCase):
     """test memoize"""
-    @parameterized.expand([
-        (42)
-    ])
-    def test_memoize(self, expected):
+    def test_memoize(self):
         """method"""
 
         class TestClass:
-            """TestClas"""
             def a_method(self):
-                """_method"""
                 return 42
 
             @memoize
             def a_property(self):
-                """a_property"""
                 return self.a_method()
-        with patch.object(TestClass, 'a_method', return_value=expected) as mok:
+        with patch.object(TestClass, 'a_method', return_value=42) as mok:
             instance = TestClass()
             instance.a_property
             instance.a_property
