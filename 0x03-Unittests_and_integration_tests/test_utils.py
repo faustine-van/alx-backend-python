@@ -73,6 +73,6 @@ class TestMemoize(unittest.TestCase):
         with patch.object(TestClass, 'a_method', return_value=expected) as mok:
             instance = TestClass()
             instance.a_property
-            instance.a_property, expected
+            instance.a_property
 
             mok.assert_called_once()
