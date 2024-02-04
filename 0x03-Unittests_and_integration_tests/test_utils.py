@@ -58,16 +58,21 @@ class TestMemoize(unittest.TestCase):
         (42)
     ])
     def test_memoize(self, expected):
+        """method"""
+
         class TestClass:
+            """TestClas"""
             def a_method(self):
+                """_method"""
                 return 42
 
             @memoize
             def a_property(self):
+                """a_property"""
                 return self.a_method()
         with patch.object(TestClass, 'a_method', return_value=expected) as mok:
             instance = TestClass()
-            instance.a_property
-            instance.a_property
+            self.assertEqual(instance.a_property, expected)
+            self.assertEqual(instance.a_property, expected)
 
             mok.assert_called_once()
