@@ -53,18 +53,18 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """test memoize"""
+    """test memoize class"""
     def test_memoize(self):
         """method test_memoiz3"""
 
         class TestClass:
-            """TestClass memoise"""
-            def a_method(self):
+            """TestClass memoize"""
+            def a_method(self) -> int:
                 """a_method memoize"""
                 return 42
 
             @memoize
-            def a_property(self):
+            def a_property(self) -> int:
                 """a_property memoize"""
                 return self.a_method()
 
@@ -79,3 +79,4 @@ class TestMemoize(unittest.TestCase):
             # The second call to a_property
             res2 = instance.a_property
             self.assertEqual(res2, 42)
+
