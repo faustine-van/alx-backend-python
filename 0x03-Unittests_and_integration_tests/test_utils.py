@@ -68,7 +68,7 @@ class TestMemoize(unittest.TestCase):
                 """a_property memoize"""
                 return self.a_method()
 
-        with patch.object(TestClass, 'a_method', return_value=42) as mok:
+        with patch.object(TestClass, 'a_method', return_value=41) as mok:
             instance = TestClass()
             # The first call to a_property
             res = instance.a_property
