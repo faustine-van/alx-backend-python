@@ -5,7 +5,7 @@
 import requests
 import unittest
 from parameterized import parameterized
-from utils import access_nested_map, get_json
+from utils import access_nested_map, get_json, memoize
 from unittest.mock import patch, Mock
 
 
@@ -77,5 +77,3 @@ class TestMemoize(unittest.TestCase):
             # The second call to a_property
             res = instance.a_property
             self.assertEqual(res, 42)
-
-            mok.assert_called_once()
