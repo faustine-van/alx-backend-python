@@ -54,9 +54,6 @@ class TestGetJson(unittest.TestCase):
 
 class TestMemoize(unittest.TestCase):
     """test memoize"""
-    @parameterized.expand([
-        (42)
-    ])
     def test_memoize(self, expected):
         """method"""
 
