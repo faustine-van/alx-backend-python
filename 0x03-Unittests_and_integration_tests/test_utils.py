@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """TestAccessNestedMap
+   test_utils.py
 """
 import requests
 import unittest
 from parameterized import parameterized
-from utils import access_nested_map, get_json
+from utils import access_nested_map, get_json, memoize
 from unittest.mock import patch, Mock
 
 
@@ -35,23 +36,17 @@ class TestGetJson(unittest.TestCase):
     """
     estGetJson.test_get_json
     """
-    def test_get_json(self) -> None:
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False})
+    ])
+    def test_get_json(self, url, expected):
         """test_access_nested_map_exception"""
         with patch('utils.requests.get') as mocked_get:
-            test_data = [
-             {"url": "http://example.com",
-              "test_payload": {"payload": True}},
-             {"url": "http://holberton.io",
-              "test_payload": {"payload": False}},
-            ]
-            for data in test_data:
-                test_url = data['url']
-                test_payload = data['test_payload']
+            mock_res = Mock()
+            mock_res.json.return_value = expected
+            mocked_get.return_value = mock_res
 
-                mock_res = Mock()
-                mock_res.json.return_value = test_payload
-                mocked_get.return_value = mock_res
-
-                res = get_json(test_url)
-                mocked_get.assert_called_with(test_url)
-                self.assertEqual(res, test_payload)
+            res = get_json(url)
+            mocked_get.assert_called_once_with(url)
+            self.assertEqual(res, expected)
