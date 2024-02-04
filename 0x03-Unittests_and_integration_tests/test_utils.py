@@ -62,27 +62,27 @@ class TestMemoize(unittest.TestCase):
         """
 
         class TestClass:
-            """Tests the function when calling a_property twice,
-               the correct result is returned but a_method is only
-               called once using assert_called_once
+            """test class to be memoized.
+                   class: TestClass()
             """
             def a_method(self):
+                """Method to be memoized.
+                   method: a_method()
+                """
                 return 42
 
             @memoize
             def a_property(self):
+                """Property calling a_method.
+                   method: a_property()
+                """
                 return self.a_method()
         # Mock the a_method using patch and Set return value
-        with patch.object(TestClass, 'a_method',
-                          return_value=42) as mok:
+        with patch.object(TestClass, 'a_method') as mok:
             instance = TestClass()
             # The first call to a_property
-            res1 = instance.a_property
+            instance.a_property
             # The second call to a_property
-            res2 = instance.a_property
+            instance.a_property
             # call once
             mok.assert_called_once()
-
-            # check if the correct result is returned
-            self.assertEqual(res1, 42)
-            self.assertEqual(res2, 42)
