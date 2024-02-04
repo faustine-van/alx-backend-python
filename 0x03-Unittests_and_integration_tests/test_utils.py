@@ -35,7 +35,7 @@ class TestGetJson(unittest.TestCase):
     """
     estGetJson.test_get_json
     """
-    def test_get_json(self):
+    def test_get_json(self) -> None:
         """test_access_nested_map_exception"""
         with patch('utils.requests.get') as mocked_get:
             test_data = [
