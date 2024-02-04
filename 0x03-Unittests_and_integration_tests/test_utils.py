@@ -81,8 +81,8 @@ class TestMemoize(unittest.TestCase):
         with patch.object(TestClass, 'a_method') as mok:
             instance = TestClass()
             # The first call to a_property
-            instance.a_property
+            instance.a_property()
             # The second call to a_property
-            instance.a_property
+            instance.a_property()
             # call once
             mok.assert_called_once()
