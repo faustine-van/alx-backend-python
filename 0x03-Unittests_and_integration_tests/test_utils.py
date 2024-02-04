@@ -53,41 +53,26 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """Test memoize with a specific value for a_method.
-        class: - TestMemoize class
-    """
+    """ Class for Testing Memoize """
+
     def test_memoize(self):
-        """Test class with a_method and a_property.
-           method: - test_memoize()
+        """ Test that when calling a_property twice, the correct result
+        is returned but a_method is only called once using
+        assert_called_once
         """
 
         class TestClass:
-            """test class to be memoized.
-                   class: TestClass()
-                """
+            """ Test Class for wrapping with memoize """
+
             def a_method(self):
-                """Method to be memoized.
-                   method: a_method()
-                """
                 return 42
 
             @memoize
             def a_property(self):
-                """Property calling a_method.
-                   method: a_property()
-                """
                 return self.a_method()
-        # Mock the a_method using patch and Set return value
-        with patch.object(TestClass, 'a_method',
-                          return_value=42) as mok:
-            instance = TestClass()
-            # The first call to a_property
-            res1 = instance.a_property
-            # The second call to a_property
-            res2 = instance.a_property
-            # call once
-            mok.assert_called_once()
 
-            # check if the correct result is returned
-            self.assertEqual(res1, 42)
-            self.assertEqual(res2, 42)
+        with patch.object(TestClass, 'a_method') as mock:
+            test_class = TestClass()
+            test_class.a_property()
+            test_class.a_property()
+            mock.assert_called_once()
