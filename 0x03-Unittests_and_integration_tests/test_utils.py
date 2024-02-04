@@ -55,17 +55,17 @@ class TestGetJson(unittest.TestCase):
 class TestMemoize(unittest.TestCase):
     """test memoize"""
     def test_memoize(self):
-        """method"""
+        """method test_memoiz3"""
 
         class TestClass:
-            """TestClas"""
+            """TestClass memoise"""
             def a_method(self):
-                """_method"""
+                """a_method memoize"""
                 return 42
 
             @memoize
             def a_property(self):
-                """a_property"""
+                """a_property memoize"""
                 return self.a_method()
 
         with patch.object(TestClass, 'a_method', return_value=42) as mok:
