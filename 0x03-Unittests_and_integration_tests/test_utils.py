@@ -79,6 +79,7 @@ class TestMemoize(unittest.TestCase):
                 return self.a_method()
         # Mock the a_method using patch and Set return value
         with patch.object(TestClass, 'a_method') as mok:
+
             instance = TestClass()
             # The first call to a_property
             instance.a_property()
