@@ -53,21 +53,26 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """test memoize class"""
+    """Test memoize with a specific value for a_method.
+        class: - TestMemoize class
+    """
     def test_memoize(self):
-        """method test_memoiz3"""
+        """Test class with a_method and a_property.
+           method: - test_memoize()
+        """
 
         class TestClass:
             def a_method(self):
+                """Method to be memoized."""
                 return 42
 
             @memoize
             def a_property(self):
+                """Property calling a_method."""
                 return self.a_method()
-
+        # Mock the a_method using patch and Set return value
         with patch.object(TestClass, 'a_method',
                           return_value=42) as mok:
-
             instance = TestClass()
             # The first call to a_property
             res1 = instance.a_property
@@ -76,5 +81,6 @@ class TestMemoize(unittest.TestCase):
             # call once
             mok.assert_called_once()
 
+            # check if the correct result is returned
             self.assertEqual(res1, 42)
             self.assertEqual(res2, 42)
