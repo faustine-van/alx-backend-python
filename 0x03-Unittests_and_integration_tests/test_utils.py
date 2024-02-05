@@ -56,7 +56,7 @@ class TestMemoize(unittest.TestCase):
     """Test memoize with a specific value for a_method.
         class: - TestMemoize class
     """
-    def test_memoize(self):
+    def test_memoize(self) -> None:
         """Test class with a_method and a_property.
            method: - test_memoize()
         """
@@ -71,6 +71,7 @@ class TestMemoize(unittest.TestCase):
             @memoize
             def a_property(self):
                 return self.a_method()
+
         # Mock the a_method using patch and Set return value
         with patch.object(TestClass, 'a_method') as mok:
             instance = TestClass()
