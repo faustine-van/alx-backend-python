@@ -3,10 +3,11 @@
    test_utils.py
 """
 import unittest
-from parameterized import parameterized
+from parameterized import parameterized, parameterized_class
 from utils import get_json
-from unittest.mock import patch, PropertyMock
+from unittest.mock import Mock, patch, PropertyMock
 from client import GithubOrgClient
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -63,8 +64,40 @@ class TestGithubOrgClient(unittest.TestCase):
         ({"license": {"key": "my_license"}}, "my_license", True),
         ({"license": {"key": "other_license"}}, "my_license", False)
     ])
-    def test_has_license(self, data, license_key, expected):
+    def test_has_license(self, data, license_key, val):
         """unit-test GithubOrgClient.has_license
            with parameterize the expected returned value
         """
-        self.assertEqual(GithubOrgClient.has_license(data, license_key), expected)
+        self.assertEqual(GithubOrgClient.has_license(data, license_key), val)
+
+
+@parameterized_class(
+    ('org_payload', 'repos_payload', 'expected_repos', 'apache2_repos'),
+    TEST_PAYLOAD
+)
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """test the GithubOrgClient.public_repos method in
+       an integration test
+    """
+    org_payload = None
+    repos_payload = None
+    expected_repos = None
+    apache2_repos = None
+
+    @classmethod
+    def setUpClass(cls):
+        """"Start patching and  mock requests.get"""
+        cls.get_patcher = patch('requests.get')
+        cls.mock_get = cls.get_patcher.start()
+        # Use side_effect for multiple returns
+        cls.mock_get.return_value.json.side_effect = [
+            cls.org_payload,
+            cls.repos_payload,
+            cls.expected_repos,
+            cls.apache2_repos
+        ]
+
+    @classmethod
+    def tearDownClass(cls):
+        """stop the patcher."""
+        cls.get_patcher.stop()
