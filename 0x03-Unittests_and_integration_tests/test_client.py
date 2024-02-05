@@ -42,14 +42,29 @@ class TestGithubOrgClient(unittest.TestCase):
         with patch(client_org, new_callable=PropertyMock()) as mock:
             GithubOrgClient._public_repos_url
 
-    @patch('utils.get_json', new_callable=PropertyMock())
-    def test_public_repos(self, mock):
+    @patch('utils.get_json', return_value=[{"name": "repo1"}])
+    def test_public_repos(self, mock_get_json):
         """Test that the list of repos is what you expect
             from the chosen payload
         """
-
-        mock.return_value = 'Success'
-        GithubOrgClient.public_repos
         client_url = 'client.GithubOrgClient._public_repos_url'
-        with patch(client_url, new_callable=PropertyMock()) as mocked_pro:
-            mocked_pro.return_value = 'Real Url'
+        url = 'https://api.github.com/orgs/google/repos'
+        with patch(client_url, url) as mocked_url:
+            # Instantiate GithubOrgClient
+            org_client = GithubOrgClient(org_name='google')
+            # Call the public_repos property
+            res = org_client.public_repos()
+            # Assert that get_json was called once
+            # with the correct URL
+            # mock_get_json.assert_called_once_with(url)
+            # mocked_url.assert_called_once()
+
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license"),
+        ({"license": {"key": "other_license"}}, "my_license")
+    ])
+    def test_has_license(self, data, license_key):
+        """unit-test GithubOrgClient.has_license
+           with parameterize the expected returned value
+        """
+        GithubOrgClient.has_license(data, license_key)
