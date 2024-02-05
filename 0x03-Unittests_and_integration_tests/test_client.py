@@ -41,7 +41,7 @@ class TestGithubOrgClient(unittest.TestCase):
         client_org = 'client.GithubOrgClient.org'
         with patch(client_org, new_callable=PropertyMock()) as mock:
             GithubOrgClient._public_repos_url
-    
+
     @patch('utils.get_json', new_callable=PropertyMock())
     def test_public_repos(self, mock):
         """Test that the list of repos is what you expect
@@ -50,9 +50,6 @@ class TestGithubOrgClient(unittest.TestCase):
 
         mock.return_value = 'Success'
         GithubOrgClient.public_repos
-
-
         client_url = 'client.GithubOrgClient._public_repos_url'
         with patch(client_url, new_callable=PropertyMock()) as mocked_pro:
             mocked_pro.return_value = 'Real Url'
-        # Test that the mocked property and the mocked get_json was called once.
