@@ -62,20 +62,11 @@ class TestMemoize(unittest.TestCase):
         """
 
         class TestClass:
-            """test class to be memoized.
-                   class: TestClass()
-            """
             def a_method(self):
-                """Method to be memoized.
-                   method: a_method()
-                """
                 return 42
 
             @memoize
             def a_property(self):
-                """Property calling a_method.
-                   method: a_property()
-                """
                 return self.a_method()
         # Mock the a_method using patch and Set return value
         with patch.object(TestClass, 'a_method') as mok:
