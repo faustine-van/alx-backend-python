@@ -105,8 +105,9 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     def test_public_repos(self):
         """method returns the expected results based on the fixtures
         """
-        org_client = GithubOrgClient(org_name='google')
-        repos = org_client.public_repos()
+        # org_client = GithubOrgClient(org_name='google')
+        # repos = org_client.public_repos()
+        repos = GithubOrgClient.public_repos(self)
         self.assertEqual(repos, self.expected_repos)
 
     def test_public_repos_with_license(self):
