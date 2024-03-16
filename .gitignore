@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Python virtual environment
+venv/
+env/
+*.pyc
+__pycache__/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Visual Studio Code configuration files
+.vscode/
+
+# PyCharm configuration files
+.idea/
+
+# Pytest cache
+.cache/
+
+# Coverage directory used by coverage.py
+.coverage
+
+# SQLAlchemy files
+*.sqlite
+
+# Logs
+*.log
+logs/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Compiled C extensions
+*.so
+
+# Caches
+__pycache__/
+
+# Python packaging artifacts
+dist/
+build/
+
+# Project-specific directories
+*.egg-info/
