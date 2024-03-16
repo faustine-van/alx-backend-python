@@ -1,10 +1,19 @@
 # 0x01. Python - Async
+
+## Topic
 - async and await
 - execute an async program with asyncio 
 - run concurrent coroutines
 - create asyncio tasks
 - use the random module
 
+### task setup
+```
+# create file 
+touch filename.py
+chmod +x filename.py
+./filename,py
+```
 
 ### References
 1. [Async IO in Python: A Complete Walkthrough](https://realpython.com/async-io-python/)
